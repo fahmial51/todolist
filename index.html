@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>To Do List</title>
+</head>
+<body>
+    <h1>ToDoList</h1>
+    <input type="text" name="inputList" id="inputList" placeholder="masukkan to do list">
+    <button id="tambahList">Tambah</button>
+
+    <ol id="toDoList">
+        <li>Belajar HTML</li>
+        <li>Belajar VanillaJs</li>
+    </ol>
+
+    <script>
+    const inputDOM = document.getElementById('inputList');
+    const buttonDOM = document.getElementById('tambahList');
+    const listDOM = document.getElementById('toDoList');
+    listDOM.innerHTML = localStorage.getItem('toDoList');
+
+    
+    buttonDOM.addEventListener('click', addList);
+
+    function addList(){
+        const toDo = inputDOM.value; 
+        inputDOM.value = '';
+        listDOM.innerHTML += "<li>"+toDo+"</li>";
+        
+        localStorage.setItem('toDoList', listDOM.innerHTML);
+    }
+    </script>
+</body>
+</html>
