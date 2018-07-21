@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>To Do List</title>
+    <title>Daftar Makanan</title>
 </head>
 <body>
-    <h1 style="color: red;">To Do List</h1>
-    <input type="text" name="inputList" id="inputList" placeholder="masukkan to do list">
+    <h1 style="color: red;">Daftar Makanan</h1>
+    <input type="text" name="inputList" id="inputList" placeholder="masukkan nama">
     <button id="tambahList">Tambah</button>
 
     <ol id="toDoList">
-        <li>Belajar HTML</li>
-        <li>Belajar VanillaJs</li>
     </ol>
 
     <script>
+
+    let data = [
+        'Bubur Ayam',
+        'Nasi Kucing',
+    ];
+
     const inputDOM = document.getElementById('inputList');
     const buttonDOM = document.getElementById('tambahList');
     const listDOM = document.getElementById('toDoList');
-    listDOM.innerHTML = localStorage.getItem('toDoList');
-
     
     buttonDOM.addEventListener('click', addList);
 
     function addList(){
         const toDo = inputDOM.value; 
         inputDOM.value = '';
-        listDOM.innerHTML += "<li>"+toDo+"</li>";
         
         localStorage.setItem('toDoList', listDOM.innerHTML);
     }
+
+    function render(){
+        let html = "";
+        for (let i = 0;i < data.length;i++ ){
+            html += "<li>"+ data[i] +"</li>";
+        }
+        listDOM.innerHTML = html;
+    }
+
+    render();
+
     </script>
 </body>
 </html>
