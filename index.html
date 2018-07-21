@@ -8,7 +8,7 @@
     <div class="container">
         <h1 style="color: red;">Daftar Makanan</h1>
         <div class="form-inline mb-3">
-            <input class="form-control" type="text" name="inputList" id="inputList" placeholder="masukkan nama">
+            <input class="form-control" type="text" name="inputList" id="inputList" placeholder="masukkan nama" autofocus>
             <button class="btn btn-success" id="tambahList" type="button">Tambah</button>
         </div>
 
@@ -28,6 +28,12 @@
     const buttonDOM = document.getElementById('tambahList');
     const listDOM = document.getElementById('makanan');
         
+    inputDOM.addEventListener('keyup', function(e){
+        e.preventDefault();
+        if(e.keyCode === 13){
+            addList();
+        }
+    });
     buttonDOM.addEventListener('click', addList);
 
     function addList(){
