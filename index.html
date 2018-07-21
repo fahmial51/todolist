@@ -22,7 +22,7 @@
     const inputDOM = document.getElementById('inputList');
     const buttonDOM = document.getElementById('tambahList');
     const listDOM = document.getElementById('makanan');
-
+    
     buttonDOM.addEventListener('click', addList);
 
     function addList(){
@@ -38,10 +38,17 @@
     function render(){
         let html = "";
         for (let i = 0;i < data.length;i++ ){
-            html += `<li> ${data[i]} </li>`;
+            html += `<li id="${i}"> ${data[i]}  <button class="delete-list" onclick="deleteList(${i})">X</button></li>`;
         }
         
         listDOM.innerHTML = html;
+    }
+
+    function deleteList(id){
+        document.getElementById(id).remove();
+        data.splice(id, 1);
+
+        localStorage.setItem('makanan', JSON.stringify(data));
     }
 
     render();
