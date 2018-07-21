@@ -8,27 +8,31 @@
     <input type="text" name="inputList" id="inputList" placeholder="masukkan nama">
     <button id="tambahList">Tambah</button>
 
-    <ol id="toDoList">
+    <ol id="makanan">
     </ol>
 
     <script>
 
-    let data = [
-        'Bubur Ayam',
-        'Nasi Kucing',
-    ];
+    let data = [];
+    const localData = JSON.parse(localStorage.getItem('makanan'));
+    if (localData != null) {
+        data = localData;
+    }
 
     const inputDOM = document.getElementById('inputList');
     const buttonDOM = document.getElementById('tambahList');
-    const listDOM = document.getElementById('toDoList');
-    
+    const listDOM = document.getElementById('makanan');
+
     buttonDOM.addEventListener('click', addList);
 
     function addList(){
-        const toDo = inputDOM.value; 
+        const makanan = inputDOM.value; 
+        data.push(makanan);
+
+        render();
         inputDOM.value = '';
 
-        localStorage.setItem('toDoList', listDOM.innerHTML);
+        localStorage.setItem('makanan', JSON.stringify(data));
     }
 
     function render(){
@@ -36,6 +40,7 @@
         for (let i = 0;i < data.length;i++ ){
             html += `<li> ${data[i]} </li>`;
         }
+        
         listDOM.innerHTML = html;
     }
 
