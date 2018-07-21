@@ -2,14 +2,19 @@
 <html lang="en">
 <head>
     <title>Daftar Makanan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 </head>
 <body>
-    <h1 style="color: red;">Daftar Makanan</h1>
-    <input type="text" name="inputList" id="inputList" placeholder="masukkan nama">
-    <button id="tambahList">Tambah</button>
+    <div class="container">
+        <h1 style="color: red;">Daftar Makanan</h1>
+        <div class="form-inline mb-3">
+            <input class="form-control" type="text" name="inputList" id="inputList" placeholder="masukkan nama">
+            <button class="btn btn-success" id="tambahList" type="button">Tambah</button>
+        </div>
 
-    <ol id="makanan">
-    </ol>
+        <ol id="makanan" class="list-group">
+        </ol>
+    </div>
 
     <script>
 
@@ -22,7 +27,7 @@
     const inputDOM = document.getElementById('inputList');
     const buttonDOM = document.getElementById('tambahList');
     const listDOM = document.getElementById('makanan');
-    
+        
     buttonDOM.addEventListener('click', addList);
 
     function addList(){
@@ -38,7 +43,7 @@
     function render(){
         let html = "";
         for (let i = 0;i < data.length;i++ ){
-            html += `<li id="${i}"> ${data[i]}  <button class="delete-list" onclick="deleteList(${i})">X</button></li>`;
+            html += `<li class="list-group-item" id="${i}"> ${data[i]}  <button class="btn btn-danger float-right delete-list" onclick="deleteList(${i})">x</button></li>`;
         }
         
         listDOM.innerHTML = html;
